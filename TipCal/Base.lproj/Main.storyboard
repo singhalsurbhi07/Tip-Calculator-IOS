@@ -8,7 +8,7 @@
         <!--TipCal-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TipCal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TipCalView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="TipCal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jch-B5-J61">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jch-B5-J61">
                                 <rect key="frame" x="203" y="145" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -44,7 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E2M-Rl-wow">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E2M-Rl-wow">
                                 <rect key="frame" x="203" y="221.5" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -76,7 +76,7 @@
                                     <segment title="25%"/>
                                 </segments>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="G8K-XR-Xko"/>
+                                    <action selector="onPercentageChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="kCl-Ll-qno"/>
                                 </connections>
                             </segmentedControl>
                             <slider opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="10" id="WVX-n1-fNL">
@@ -127,6 +127,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="HMl-We-VFl" id="2sf-Y2-7pd"/>
+                        <outlet property="firstView" destination="8bC-Xf-vdC" id="AP7-64-4jP"/>
                         <outlet property="numSplitLabel" destination="UPX-d0-Xrd" id="Sls-20-PN4"/>
                         <outlet property="splitLabel" destination="I5A-7L-y2x" id="Fhd-Ee-xj2"/>
                         <outlet property="splitSlider" destination="WVX-n1-fNL" id="d1H-92-gIk"/>
@@ -142,12 +143,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="542" y="351"/>
+            <point key="canvasLocation" x="618" y="351"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="sZ8-l3-8BJ">
             <objects>
-                <viewController id="jck-Nc-xT8" customClass="SettingsViewController" customModule="TipCal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jck-Nc-xT8" customClass="SettingsViewController" customModule="TipCal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aqg-iQ-cuo" customClass="SCNView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,12 +186,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="psD-rF-37d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="344"/>
+            <point key="canvasLocation" x="1013" y="344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="T81-dJ-YxC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wr0-Lp-mtQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wr0-Lp-mtQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IyE-4j-6fh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

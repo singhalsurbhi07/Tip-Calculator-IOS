@@ -24,6 +24,17 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var numSplitLabel: UILabel!
     
+    @IBOutlet var firstView: UIView!
+    
+    var currencyFormatter: NSNumberFormatter {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        return formatter
+    }
+    
+    var totalBill:Double = 0.0
+    var billAmt:Double = 0.0
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -39,6 +50,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        billField.becomeFirstResponder();
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -46,20 +59,36 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        super.encodeRestorableStateWithCoder(coder)
+        coder.encodeDouble(billAmt,forKey:"bill")
+    
+    }
+    
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        super.decodeRestorableStateWithCoder(coder)
+        billField.text = String(coder.decodeDoubleForKey("bill"))
+        
+    }
 
     @IBAction func tapdone(sender: AnyObject) {
         view.endEditing(true)
     }
     
+    @IBAction func onPercentageChange(sender: AnyObject) {
+        view.endEditing(true)
+        calculateTip(NSNull)
+    }
     @IBAction func calculateTip(sender: AnyObject) {
         let tipPercentages = [0.15, 0.20, 0.25]
-        let bill = Double(billField.text!) ?? 0
-        let tip = bill * tipPercentages[tipSegmentControl.selectedSegmentIndex]
-        let total = bill + tip
+        billAmt = Double(billField.text!) ?? 0
+        let tip = billAmt * tipPercentages[tipSegmentControl.selectedSegmentIndex]
+        let total = billAmt + tip
+        totalBill = total
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
-        
+        tipLabel.text = currencyFormatter.stringFromNumber(tip)
+        totalLabel.text = currencyFormatter.stringFromNumber(total)
         calculateSplit(sender)
         
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -81,16 +110,10 @@ class ViewController: UIViewController {
         
         numSplitLabel.text = String(format: "%d " + way, numberOfSplit)
         
-        let totalText = totalLabel.text!
-        let totalTextAmt = String(totalText.characters.dropFirst())
-        let totalAmt = Double(totalTextAmt) ?? 0
-        let splitVal = Double(totalAmt/Double(numberOfSplit))
+        let splitVal = Double(totalBill/Double(numberOfSplit))
         
-        splitLabel.text = String(format: "$%.2f", splitVal)
-        
-        
+        splitLabel.text = currencyFormatter.stringFromNumber(splitVal)
         
     }
-
 }
 

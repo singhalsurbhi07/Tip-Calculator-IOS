@@ -46,8 +46,10 @@ class SettingsViewController: UIViewController {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(defaultPercentageSelectSegment.selectedSegmentIndex, forKey: "selected_index")
+        print(defaultPercentageSelectSegment.selectedSegmentIndex)
         
         defaults.synchronize()
+        print(defaults.integerForKey("selected_index"))
     }
 
 }
